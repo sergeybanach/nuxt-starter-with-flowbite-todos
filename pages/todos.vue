@@ -38,22 +38,6 @@
     </form>
 
     <div style="display: flex; flex-wrap: wrap">
-      <!-- <div
-        v-for="(post, index) in postsStore.filteredPosts"
-        style="
-          margin-bottom: 1rem;
-          margin-right: 1rem;
-          border: 1px solid black;
-          padding: 1rem;
-        "
-        :class="{
-          selected_post: postsStore.selectedPosts.has(post?.id),
-        }"
-        @click="selectCurrentPost(post?.id)"
-      >
-        {{ post?.title }}
-      </div> -->
-
       <a
         v-for="(post, index) in postsStore.filteredPosts"
         href="#"
@@ -107,8 +91,13 @@ const { data, error } = await useFetch(
 );
 postsStore.allPosts = data.value;
 postsStore.filteredPosts = postsStore.allPosts;
+
 const selectCurrentPost = (postId: number) => {
-  postsStore.selectedPosts.add(postId);
+  if (postsStore.selectedPosts.has(postId)) {
+    postsStore.selectedPosts.delete(postId);
+  } else {
+    postsStore.selectedPosts.add(postId);
+  }
 };
 </script>
 
