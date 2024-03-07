@@ -1,8 +1,8 @@
 <script setup>
 const menuitems = [
   {
-    title: "Features",
-    path: "#",
+    title: "Todos",
+    path: "/todos",
   },
   {
     title: "Pricing",
